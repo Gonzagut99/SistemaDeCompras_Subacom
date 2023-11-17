@@ -31,6 +31,3 @@ build/
 
 ### VS Code ###
 .vscode/
-
-# (descomenta estas líneas si estos archivos contienen información sensible)
-application.properties
