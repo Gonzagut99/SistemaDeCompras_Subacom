@@ -1,4 +1,4 @@
-package pe.com.subacom;
+package pe.com.subacomcompras;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
