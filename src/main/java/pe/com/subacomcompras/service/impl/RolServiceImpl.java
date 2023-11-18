@@ -7,11 +7,12 @@ package pe.com.subacomcompras.service.impl;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import pe.com.subacomcompras.entity.RolEntity;
-import pe.com.subacomcompras.repository.CategoriaRepository;
 import pe.com.subacomcompras.repository.RolRepository;
 import pe.com.subacomcompras.service.seguridad.RolService;
 
+@Service
 public class RolServiceImpl implements RolService{
     @Autowired
     private RolRepository repositorio;

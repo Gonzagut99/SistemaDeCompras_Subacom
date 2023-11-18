@@ -7,10 +7,12 @@ package pe.com.subacomcompras.service.impl;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import pe.com.subacomcompras.entity.EmpleadoEntity;
 import pe.com.subacomcompras.repository.EmpleadoRepository;
 import pe.com.subacomcompras.service.seguridad.EmpleadoService;
 
+@Service
 public class EmpleadoServiceImpl implements EmpleadoService{
     @Autowired
     private EmpleadoRepository repositorio;

@@ -7,10 +7,12 @@ package pe.com.subacomcompras.service.impl;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import pe.com.subacomcompras.entity.ProductoEntity;
 import pe.com.subacomcompras.repository.ProductoRepository;
 import pe.com.subacomcompras.service.gestion.ProductoService;
 
+@Service
 public class ProductoServiceImpl implements ProductoService{
     @Autowired
     private ProductoRepository repositorio;

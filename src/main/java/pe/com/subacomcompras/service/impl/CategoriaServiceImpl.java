@@ -15,7 +15,7 @@ import pe.com.subacomcompras.service.gestion.CategoriaService;
 @Service
 public class CategoriaServiceImpl implements CategoriaService{
     @Autowired
-    private CategoriaRepository repositorio;
+    private CategoriaRepository repository;
 
     @Override
     public List<CategoriaEntity> findAll() {

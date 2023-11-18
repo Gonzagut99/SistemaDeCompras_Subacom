@@ -5,11 +5,8 @@
 package pe.com.subacomcompras.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import pe.com.subacomcompras.entity.CategoriaEntity;
 
-/**
- *
- * @author jaime
- */
-public interface CategoriaRepository extends JpaRepository<CategoriaRepository, Long>{
-    
+public interface CategoriaRepository extends JpaRepository<CategoriaEntity, Long>{
+
 }
