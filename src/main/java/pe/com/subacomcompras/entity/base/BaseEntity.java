@@ -1,6 +1,7 @@
 package pe.com.subacomcompras.entity.base;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -11,6 +12,8 @@ import lombok.experimental.SuperBuilder;
 
 
 public class BaseEntity {
+    
     @Column(name="estado")
+    @NotEmpty
     private boolean estado;
 }
