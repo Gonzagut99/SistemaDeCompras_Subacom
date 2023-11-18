@@ -22,7 +22,7 @@ public class DetalleReporteEntity extends BaseEntity implements Serializable{
     private static final long serialVersionUID=1L;
     
     @Id
-    @Column(name="id_report")
+    @Column(name="id_detail_report")
     private long id_detail_report;
     
     @NotEmpty
