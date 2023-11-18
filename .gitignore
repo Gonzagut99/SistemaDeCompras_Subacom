@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Archivos de configuración específicos de la aplicación
+# (descomenta estas líneas si estos archivos contienen información sensible)
+src/main/resources/application.properties
+

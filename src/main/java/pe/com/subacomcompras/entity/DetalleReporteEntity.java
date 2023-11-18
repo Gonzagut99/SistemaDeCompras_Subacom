@@ -1,6 +1,6 @@
 package pe.com.subacomcompras.entity;
 
-import lombok.*;
+/*import lombok.*;
 import lombok.experimental.SuperBuilder;
 import jakarta.persistence.*;
 import java.io.Serializable;
@@ -30,4 +30,4 @@ public class DetalleReporteEntity extends BaseEntity implements Serializable{
     @ManyToOne
     @JoinColumn(name="id_report",nullable = false)
     private InformeEntity informe;
-}
+}*/
