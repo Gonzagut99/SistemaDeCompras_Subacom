@@ -7,10 +7,6 @@ package pe.com.subacomcompras.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import pe.com.subacomcompras.entity.ProveedorEntity;
 
-/**
- *
- * @author jaime
- */
 public interface ProveedorRepository extends JpaRepository<ProveedorEntity, Long>{
     
 }

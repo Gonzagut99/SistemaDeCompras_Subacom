@@ -9,7 +9,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-
+@MappedSuperclass
 
 public class BaseEntity {
     

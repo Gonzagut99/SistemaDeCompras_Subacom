@@ -19,7 +19,7 @@ public class CategoriaServiceImpl implements CategoriaService{
 
     @Override
     public List<CategoriaEntity> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return repository.findAll();
     }
 
     @Override

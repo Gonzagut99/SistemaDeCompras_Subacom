@@ -11,6 +11,5 @@ import pe.com.subacomcompras.entity.ProductoEntity;
 
 
 public interface ProductoRepository extends JpaRepository<ProductoEntity, Long>{
-    @Query("select p from ProductoEntity p where p.estado=true")
-    List<ProductoEntity> findAllCustom();
+    
 }
