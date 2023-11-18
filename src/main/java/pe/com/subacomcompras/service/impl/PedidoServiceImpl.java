@@ -16,6 +16,7 @@ import pe.com.subacomcompras.service.gestion.PedidoService;
 public class PedidoServiceImpl implements PedidoService{
     @Autowired
     private PedidoRepository repositorio;
+
     @Override
     public List<PedidoEntity> findAll() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -50,5 +51,5 @@ public class PedidoServiceImpl implements PedidoService{
     public PedidoEntity enable(PedidoEntity t) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+   
 }
