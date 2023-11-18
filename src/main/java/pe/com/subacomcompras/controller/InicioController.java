@@ -5,9 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class InicioController {
-    
-   @GetMapping
-   public String MostrarInicio(){
+        @GetMapping
+        public String MostrarInicio(){
         return "index";
         }
 }
