@@ -3,6 +3,7 @@ package pe.com.subacomcompras.entity;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.Date;
 import pe.com.subacomcompras.entity.base.BaseEntity;
@@ -23,12 +24,20 @@ public class PedidoEntity extends BaseEntity implements Serializable{
     @Id
     @Column(name="id_order")
     private long id_order;
+    
+    @NotEmpty
     @Column(name="order_date")
     private Date order_date;
+    
+    @NotEmpty
     @Column(name="order_state")
     private String order_state;
+    
+    @NotEmpty
     @Column(name="order_delete_state")
     private boolean order_delete_state;
+    
+    
     @ManyToOne
     @JoinColumn(name="id_supplier",nullable = false)
     private ProveedorEntity proveedor;
