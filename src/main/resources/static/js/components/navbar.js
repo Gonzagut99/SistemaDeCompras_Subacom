@@ -139,4 +139,4 @@ function createNavbar(linkHomePage) {
   }
   
   // Add the created <nav> element to the document body
-  document.body.appendChild(createNavbar("../../../templates/index.html"));
+  document.body.appendChild(createNavbar("../../../templates/Home/home.html"));
