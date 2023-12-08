@@ -6,6 +6,7 @@ package pe.com.subacomcompras.service.impl;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.com.subacomcompras.entity.UsuarioEntity;
@@ -14,42 +15,47 @@ import pe.com.subacomcompras.service.seguridad.UsuarioService;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService{
-    @Autowired
+     @Autowired
     private UsuarioRepository repositorio;
-    
+
     @Override
     public List<UsuarioEntity> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       return repositorio.findAll();
     }
 
     @Override
     public List<UsuarioEntity> findAllCustom() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return repositorio.findAllCustom();
     }
 
     @Override
-    public Optional<UsuarioEntity> findById() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Optional<UsuarioEntity> findById(Long id) {
+        return repositorio.findById(id);
     }
 
     @Override
     public UsuarioEntity add(UsuarioEntity t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return repositorio.save(t);
     }
 
     @Override
     public UsuarioEntity update(UsuarioEntity t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       UsuarioEntity objrol = repositorio.getById(t.getId_user());
+       BeanUtils.copyProperties(t, objrol);
+       return repositorio.save(objrol);
     }
 
     @Override
     public UsuarioEntity delete(UsuarioEntity t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       UsuarioEntity objrol = repositorio.getById(t.getId_user());
+       objrol.setEstado(false);
+       return repositorio.save(objrol);
     }
 
     @Override
     public UsuarioEntity enable(UsuarioEntity t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        UsuarioEntity objrol = repositorio.getById(t.getId_user());
+       objrol.setEstado(true);
+       return repositorio.save(objrol);
     }
-    
 }

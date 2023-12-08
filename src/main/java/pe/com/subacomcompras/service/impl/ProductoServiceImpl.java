@@ -6,6 +6,7 @@ package pe.com.subacomcompras.service.impl;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.com.subacomcompras.entity.ProductoEntity;
@@ -14,42 +15,48 @@ import pe.com.subacomcompras.service.gestion.ProductoService;
 
 @Service
 public class ProductoServiceImpl implements ProductoService{
-    @Autowired
+     @Autowired
     private ProductoRepository repositorio;
-    
+
     @Override
     public List<ProductoEntity> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       return repositorio.findAll();
     }
 
     @Override
     public List<ProductoEntity> findAllCustom() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return repositorio.findAllCustom();
     }
 
     @Override
-    public Optional<ProductoEntity> findById() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Optional<ProductoEntity> findById(Long id) {
+        return repositorio.findById(id);
     }
 
     @Override
     public ProductoEntity add(ProductoEntity t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return repositorio.save(t);
     }
 
     @Override
     public ProductoEntity update(ProductoEntity t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       ProductoEntity objrol = repositorio.getById(t.getId_product());
+       BeanUtils.copyProperties(t, objrol);
+       return repositorio.save(objrol);
     }
 
     @Override
     public ProductoEntity delete(ProductoEntity t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       ProductoEntity objrol = repositorio.getById(t.getId_product());
+       objrol.setEstado(false);
+       return repositorio.save(objrol);
     }
 
     @Override
     public ProductoEntity enable(ProductoEntity t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ProductoEntity objrol = repositorio.getById(t.getId_product());
+       objrol.setEstado(true);
+       return repositorio.save(objrol);
     }
     
 }

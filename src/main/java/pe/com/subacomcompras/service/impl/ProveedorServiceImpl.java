@@ -6,6 +6,7 @@ package pe.com.subacomcompras.service.impl;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.com.subacomcompras.entity.ProveedorEntity;
@@ -13,42 +14,47 @@ import pe.com.subacomcompras.repository.ProveedorRepository;
 import pe.com.subacomcompras.service.gestion.ProveedorService;
 @Service
 public class ProveedorServiceImpl implements ProveedorService{
-    @Autowired
+     @Autowired
     private ProveedorRepository repositorio;
-    
+
     @Override
     public List<ProveedorEntity> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       return repositorio.findAll();
     }
 
     @Override
     public List<ProveedorEntity> findAllCustom() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return repositorio.findAllCustom();
     }
 
     @Override
-    public Optional<ProveedorEntity> findById() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Optional<ProveedorEntity> findById(Long id) {
+        return repositorio.findById(id);
     }
 
     @Override
     public ProveedorEntity add(ProveedorEntity t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return repositorio.save(t);
     }
 
     @Override
     public ProveedorEntity update(ProveedorEntity t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       ProveedorEntity objrol = repositorio.getById(t.getId_supplier());
+       BeanUtils.copyProperties(t, objrol);
+       return repositorio.save(objrol);
     }
 
     @Override
     public ProveedorEntity delete(ProveedorEntity t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       ProveedorEntity objrol = repositorio.getById(t.getId_supplier());
+       objrol.setEstado(false);
+       return repositorio.save(objrol);
     }
 
     @Override
     public ProveedorEntity enable(ProveedorEntity t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ProveedorEntity objrol = repositorio.getById(t.getId_supplier());
+       objrol.setEstado(true);
+       return repositorio.save(objrol);
     }
-    
 }
