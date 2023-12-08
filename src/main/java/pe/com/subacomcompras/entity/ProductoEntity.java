@@ -57,11 +57,4 @@ public class ProductoEntity extends BaseEntity implements Serializable {
     @ManyToOne
     @JoinColumn(name="id_category",nullable = false)
     private CategoriaEntity categoria;
-    
-    @NotEmpty
-    @ManyToOne
-    @JoinColumn(name="id_supplier",nullable = false)
-    private ProveedorEntity proveedor;
-    
-    
 }

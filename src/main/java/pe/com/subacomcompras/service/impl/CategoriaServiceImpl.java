@@ -6,6 +6,7 @@ package pe.com.subacomcompras.service.impl;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.com.subacomcompras.entity.CategoriaEntity;
@@ -15,41 +16,47 @@ import pe.com.subacomcompras.service.gestion.CategoriaService;
 @Service
 public class CategoriaServiceImpl implements CategoriaService{
     @Autowired
-    private CategoriaRepository repository;
-
+    private CategoriaRepository repositorio;
+    
     @Override
     public List<CategoriaEntity> findAll() {
-        return repository.findAll();
+        return repositorio.findAll();
     }
 
     @Override
     public List<CategoriaEntity> findAllCustom() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return repositorio.findAllCustom();
     }
-
+    
     @Override
-    public Optional<CategoriaEntity> findById() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Optional<CategoriaEntity> findById(Long id) {
+        return repositorio.findById(id);
     }
 
     @Override
     public CategoriaEntity add(CategoriaEntity t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       return repositorio.save(t);
     }
 
     @Override
     public CategoriaEntity update(CategoriaEntity t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       CategoriaEntity objrol = repositorio.getById(t.getId_category());
+       BeanUtils.copyProperties(t, objrol);
+       return repositorio.save(objrol);
     }
 
     @Override
     public CategoriaEntity delete(CategoriaEntity t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       CategoriaEntity objrol = repositorio.getById(t.getId_category());
+       objrol.setEstado(false);
+       return repositorio.save(objrol);
     }
 
     @Override
     public CategoriaEntity enable(CategoriaEntity t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       CategoriaEntity objrol = repositorio.getById(t.getId_category());
+       objrol.setEstado(false);
+       return repositorio.save(objrol);
     }
     
 }

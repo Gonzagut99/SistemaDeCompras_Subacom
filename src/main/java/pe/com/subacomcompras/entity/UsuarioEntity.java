@@ -35,10 +35,6 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
     @Column(name="user_password")
     private String user_password;
     
-    @NotEmpty
-    @Column(name="user_delete_state")
-    private boolean user_delete_state;
-    
     @ManyToOne
     @JoinColumn(name="id_role",nullable = false)
     private RolEntity rol;

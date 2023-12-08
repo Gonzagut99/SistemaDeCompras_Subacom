@@ -6,6 +6,7 @@ package pe.com.subacomcompras.service.impl;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.com.subacomcompras.entity.EmpleadoEntity;
@@ -19,37 +20,43 @@ public class EmpleadoServiceImpl implements EmpleadoService{
     
     @Override
     public List<EmpleadoEntity> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return repositorio.findAll();
     }
 
     @Override
     public List<EmpleadoEntity> findAllCustom() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return repositorio.findAllCustom();
     }
-
+    
     @Override
-    public Optional<EmpleadoEntity> findById() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Optional<EmpleadoEntity> findById(Long id) {
+        return repositorio.findById(id);
     }
 
     @Override
     public EmpleadoEntity add(EmpleadoEntity t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       return repositorio.save(t);
     }
 
     @Override
     public EmpleadoEntity update(EmpleadoEntity t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       EmpleadoEntity objrol = repositorio.getById(t.getId_employee());
+       BeanUtils.copyProperties(t, objrol);
+       return repositorio.save(objrol);
     }
 
     @Override
     public EmpleadoEntity delete(EmpleadoEntity t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       EmpleadoEntity objrol = repositorio.getById(t.getId_employee());
+       objrol.setEstado(false);
+       return repositorio.save(objrol);
     }
 
     @Override
     public EmpleadoEntity enable(EmpleadoEntity t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       EmpleadoEntity objrol = repositorio.getById(t.getId_employee());
+       objrol.setEstado(false);
+       return repositorio.save(objrol);
     }
     
 }
