@@ -34,12 +34,12 @@ public class EmpleadoEntity extends BaseEntity implements Serializable {
     @NotEmpty
     @Size(min = 5, max = 30, message = "El primer apellido  del empleado tiene que estar entre {min} caracteres y {max} caracteres")
     @Column(name="employee_first_lastname")
-    private String employee_first_name;
+    private String employee_first_lastName;
     
     @NotEmpty
     @Size(min = 5, max = 30, message = "El segundo apellido  del empleado tiene que estar entre {min} caracteres y {max} caracteres")
     @Column(name="employee_second_lastname")
-    private String employee_second_name;
+    private String employee_second_lastNname;
     
     @NotEmpty
     @Size(min = 5, max = 30, message = "El correo electronico del empleado tiene que estar entre {min} caracteres y {max} caracteres")

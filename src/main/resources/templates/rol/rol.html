@@ -28,7 +28,7 @@
     </style>
     <title>Página Rol - Proyecto Musical</title>
 </head>
-<body class="bg-gray-700">
+<body class="bg-gray-700 flex flex-col min-h-screen">
   <nav th:insert="homeTemplate.html :: nav"></nav>
   <main class="pt-[80px] px-5 pb-4 font-semibold text-3xl flex justify-center">
     <div class="max-w-screen-xl w-full">
@@ -45,8 +45,6 @@
           <label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Habilitado</label>
           </div>
           <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Registrar</button>
-          <button type="submit" class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">Actualizar</button>
-          <button type="submit" class="text-white bg-rose-700 hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-rose-600 dark:hover:bg-rose-700 dark:focus:ring-rose-800">Eliminar</button>
       </form>
       
       <!-- Table -->
@@ -63,11 +61,14 @@
                     <th scope="col" class="px-6 py-3">
                         Rol
                     </th>
+                    <th scope="col" class="px-6 py-3">
+                      Estado
+                  </th>
                     <th scope="col" class="px-6 py-3 text-center">
-                      Editar
+                      Actualizar
                     </th>
                     <th scope="col" class="px-6 py-3 text-center">
-                      Eliminar
+                      Habilitar
                     </th>
                     <!-- <th scope="col" class="px-6 py-3">
                         <span class="sr-only">Edit</span>
@@ -75,32 +76,42 @@
                 </tr>
             </thead>
             <tbody id="empleado_tbody">
-                <!-- <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <tr th:each=" rol: ${roles}"  th:attr="rol.id_role=${rol.id_role}" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <th th:text="${rol.id_role}" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         1
                     </th>
-                    <td class="px-6 py-4">
+                    <td th:text="${rol.role_name}" class="px-6 py-4">
                         Luis Gerardo
                     </td>
-                    <td class="px-6 py-4">
-                        Bigoria Escobedo
-                    </td>
-                    <td class="px-6 py-4">
-                      luisbi@subacom.com
-                      </td>
-                    <td class="px-6 py-4 text-right">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
-                    </td>
-                    <td class="px-6 py-4 text-right">
-                      <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Eliminar</a>
+                    <td th:text="${rol.estado} ? 'Habilitado' : 'Deshabilitado'" class="px-6 py-4">
+                      Luis Gerardo
                   </td>
-                </tr> -->
+                    <td class="px-6 py-4 text-center">
+                        <a th:href="@{/actualizarrolpage/{id}(id=${rol.id_role})}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Actualizar</a>
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                      <a th:href="@{/eliminarrol/{id}(id=${rol.id_role})}" th:text="${rol.estado} ? 'Deshabilitar' : 'Habilitar'"  class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Habilitar</a>
+                      <!-- <a th:href="@{/eliminarproducto/{id}(id=${producto.id_product},page=${currentPage}, size=${page.size})}" th:text="${producto.estado} ? 'Deshabilitar' : 'Habilitar'" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Habilitar</a> -->
+                  </td>
+                </tr>
             </tbody>
         </table>
       </div>
     </div>
 
   </main>
+
+  <footer class="bg-white rounded-lg shadow m-4 dark:bg-gray-800 mt-auto">
+    <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+      <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">Subacom™</a>. Diseñado por @GonzaloGutierrez
+    </span>
+    <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
+        <li>
+            <a href="#" class="hover:underline">Contacto</a>
+        </li>
+    </ul>
+    </div>
+  </footer>
   <!-- flowbite -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
 </body>

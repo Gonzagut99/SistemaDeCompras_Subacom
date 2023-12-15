@@ -8,18 +8,76 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import pe.com.subacomcompras.entity.EmpleadoEntity;
+import pe.com.subacomcompras.entity.UsuarioEntity;
 import pe.com.subacomcompras.service.seguridad.EmpleadoService;
+import pe.com.subacomcompras.service.seguridad.RolService;
+import pe.com.subacomcompras.service.seguridad.UsuarioService;
 
 @Controller
 public class EmpleadoController {
     @Autowired
-    private EmpleadoService servicio;
+    private EmpleadoService empleadoServicio;
+    
+    @Autowired
+    private UsuarioService usuarioServicio;
+    
+    @Autowired
+    private RolService rolServicio;
     
     @GetMapping("/empleado")
     public String MostrarRol(Model modelo){
-        System.out.println("Funcion mostrarRol funcionando");
-        modelo.addAttribute("empleados",servicio.findAllCustom());
+        modelo.addAttribute("empleados",empleadoServicio.findAll());
+        modelo.addAttribute("usuarios",usuarioServicio.findAll());
+        modelo.addAttribute("empleado",new EmpleadoEntity());
+        modelo.addAttribute("usuario",new UsuarioEntity());
+        modelo.addAttribute("roles",rolServicio.findAllCustom());
         return "Empleado/empleado";
+    }
+    
+    @GetMapping("/actualizarusuariopage/{id}")
+    public String MostrarActualizarUsuarioPage(@PathVariable Long id,
+            Model modelo) {
+        modelo.addAttribute("usuario",
+                usuarioServicio.findById(id).get());
+        modelo.addAttribute("roles",rolServicio.findAllCustom());
+        
+        return "Empleado/actualizarUsuario";
+    }
+    
+    @GetMapping("/eliminarusuario/{id}")
+    public String EliminarUsuario(@PathVariable Long id) {
+        UsuarioEntity objrol = usuarioServicio.findById(id).get();
+        if (objrol.isEstado()) {
+            usuarioServicio.delete(objrol);
+        }else{
+            usuarioServicio.enable(objrol);
+        }
+   
+        return "redirect:/empleado";
+    }
+    
+    @GetMapping("/actualizarempleadopage/{id}")
+    public String MostrarActualizarEmpleadoPage(@PathVariable Long id,
+            Model modelo) {
+        modelo.addAttribute("empleado",
+                empleadoServicio.findById(id).get());
+        modelo.addAttribute("usuarios",usuarioServicio.findAllCustom());
+        
+        return "Empleado/actualizarEmpleado";
+    }
+    
+    @GetMapping("/eliminarempleado/{id}")
+    public String EliminarEmpleado(@PathVariable Long id) {
+        EmpleadoEntity objrol = empleadoServicio.findById(id).get();
+        if (objrol.isEstado()) {
+            empleadoServicio.delete(objrol);
+        }else{
+            empleadoServicio.enable(objrol);
+        }
+   
+        return "redirect:/empleado";
     }
     
     /*@GetMapping("/registrarrol")

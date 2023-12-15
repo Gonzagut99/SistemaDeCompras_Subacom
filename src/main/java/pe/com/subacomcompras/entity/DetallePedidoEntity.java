@@ -39,8 +39,4 @@ public class DetallePedidoEntity extends BaseEntity implements Serializable {
     @JoinColumn(name="id_product",nullable = false)
     private ProductoEntity producto;
     
-    @ManyToOne
-    @JoinColumn(name="id_employee",nullable = false)
-    private EmpleadoEntity empleado;
-    
 }
