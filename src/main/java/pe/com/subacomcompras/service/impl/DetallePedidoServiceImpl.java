@@ -55,7 +55,7 @@ public class DetallePedidoServiceImpl implements DetallePedidoService{
     @Override
     public DetallePedidoEntity enable(DetallePedidoEntity t) {
        DetallePedidoEntity objrol = repositorio.getById(t.getId_orderdetail());
-       objrol.setEstado(false);
+       objrol.setEstado(true);
        return repositorio.save(objrol);
     }
     

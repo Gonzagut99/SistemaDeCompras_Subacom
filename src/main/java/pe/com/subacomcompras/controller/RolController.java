@@ -22,7 +22,8 @@ public class RolController {
     
     @GetMapping("/rol")
     public String MostrarRol(Model modelo){
-        modelo.addAttribute("roles",servicio.findAllCustom());
+        modelo.addAttribute("roles",servicio.findAll());
+        modelo.addAttribute("rol", new RolEntity());
         return "rol/rol";
     }
     
@@ -31,59 +32,80 @@ public class RolController {
         return "rol/registrarrol";
     }
     
-    @ModelAttribute("rol")
-    public RolEntity ModeloRol(){
-        return new RolEntity();
-    }
-    
-    @PostMapping("/registrarrol")
-    public String RegistrarRol(
-            @ModelAttribute("rol")
-            RolEntity r
-    
-    ){
-        servicio.add(r);
-        return "redirect:/rol";
-    }
-    
-    @GetMapping("/actualizarrol/{id}")
-    public String MostrarAtualizarRol(@PathVariable Long id, Model modelo){
-        modelo.addAttribute("roles",servicio.findById(id).get());
-        return "rol/actualizarrol";
-    }
-    
-    @PostMapping("/actualizarrol/{id}")
-    public String AtualizarRol(@PathVariable Long id, @ModelAttribute("rol")
-            RolEntity r){
-        servicio.update(r);
-        return "redirect:/rol";
+    @GetMapping("/actualizarrolpage/{id}")
+    public String MostrarActualizarRolPage(@PathVariable Long id,
+            Model modelo) {
+        modelo.addAttribute("rol",
+                servicio.findById(id).get());
+        
+        return "rol/actualizarRol";
     }
     
     @GetMapping("/eliminarrol/{id}")
-    public String EliminararRol(@PathVariable Long id){
+    public String EliminarRol(@PathVariable Long id) {
         RolEntity objrol = servicio.findById(id).get();
-        servicio.delete(objrol);
+        if (objrol.isEstado()) {
+            servicio.delete(objrol);
+        }else{
+            servicio.enable(objrol);
+        }
+   
         return "redirect:/rol";
     }
     
-    @GetMapping("/habilitacionrol")
-    public String MostrarHabilitarRol(Model modelo) {
-        modelo.addAttribute("roles",
-                servicio.findAll());
-        return "rol/habilitarrol";
-    }
+    // @ModelAttribute("rol")
+    // public RolEntity ModeloRol(){
+    //     return new RolEntity();
+    // }
+    
+    // @PostMapping("/registrarrol")
+    // public String RegistrarRol(
+    //         @ModelAttribute("rol")
+    //         RolEntity r
+    
+    // ){
+    //     servicio.add(r);
+    //     return "redirect:/rol";
+    // }
+    
+    // @GetMapping("/actualizarrol/{id}")
+    // public String MostrarAtualizarRol(@PathVariable Long id, Model modelo){
+    //     modelo.addAttribute("roles",servicio.findById(id).get());
+    //     return "rol/actualizarrol";
+    // }
+    
+    // @PostMapping("/actualizarrol/{id}")
+    // public String AtualizarRol(@PathVariable Long id, @ModelAttribute("rol")
+    //         RolEntity r){
+    //     servicio.update(r);
+    //     return "redirect:/rol";
+    // }
+    
+    // @GetMapping("/eliminarrol/{id}")
+    // public String EliminararRol(@PathVariable Long id){
+    //     RolEntity objrol = servicio.findById(id).get();
+    //     servicio.delete(objrol);
+    //     return "redirect:/rol";
+    // }
+    
+    // @GetMapping("/habilitacionrol")
+    // public String MostrarHabilitarRol(Model modelo) {
+    //     modelo.addAttribute("roles",
+    //             servicio.findAll());
+    //     return "rol/habilitarrol";
+    // }
 
-    @GetMapping("/habilitarrol/{id}")
-    public String HabilitarRol(@PathVariable Long id) {
-        RolEntity objrol = servicio.findById(id).get();
-        servicio.enable(objrol);
-        return "redirect:/rol";
-    }
+    // @GetMapping("/habilitarrol/{id}")
+    // public String HabilitarRol(@PathVariable Long id) {
+    //     RolEntity objrol = servicio.findById(id).get();
+    //     servicio.enable(objrol);
+    //     return "redirect:/rol";
+    // }
 
-    @GetMapping("/deshabilitarrol/{id}")
-    public String DeshabilitarRol(@PathVariable Long id) {
-        RolEntity objrol = servicio.findById(id).get();
-        servicio.delete(objrol);
-        return "redirect:/rol";
-    }
+    // @GetMapping("/deshabilitarrol/{id}")
+    // public String DeshabilitarRol(@PathVariable Long id) {
+    //     RolEntity objrol = servicio.findById(id).get();
+    //     servicio.delete(objrol);
+    //     return "redirect:/rol";
+    // }
 }

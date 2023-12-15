@@ -40,23 +40,23 @@ public class CategoriaServiceImpl implements CategoriaService{
 
     @Override
     public CategoriaEntity update(CategoriaEntity t) {
-       CategoriaEntity objrol = repositorio.getById(t.getId_category());
-       BeanUtils.copyProperties(t, objrol);
-       return repositorio.save(objrol);
+       CategoriaEntity objCategoria = repositorio.getById(t.getId_category());
+       BeanUtils.copyProperties(t, objCategoria);
+       return repositorio.save(objCategoria);
     }
 
     @Override
     public CategoriaEntity delete(CategoriaEntity t) {
-       CategoriaEntity objrol = repositorio.getById(t.getId_category());
-       objrol.setEstado(false);
-       return repositorio.save(objrol);
+       CategoriaEntity objCategoria = repositorio.getById(t.getId_category());
+       objCategoria.setEstado(false);
+       return repositorio.save(objCategoria);
     }
 
     @Override
     public CategoriaEntity enable(CategoriaEntity t) {
-       CategoriaEntity objrol = repositorio.getById(t.getId_category());
-       objrol.setEstado(false);
-       return repositorio.save(objrol);
+       CategoriaEntity objCategoria = repositorio.getById(t.getId_category());
+       objCategoria.setEstado(true);
+       return repositorio.save(objCategoria);
     }
     
 }

@@ -55,8 +55,13 @@ public class EmpleadoServiceImpl implements EmpleadoService{
     @Override
     public EmpleadoEntity enable(EmpleadoEntity t) {
        EmpleadoEntity objrol = repositorio.getById(t.getId_employee());
-       objrol.setEstado(false);
+       objrol.setEstado(true);
        return repositorio.save(objrol);
+    }
+
+    @Override
+    public List<EmpleadoEntity> findByDni(String employee_dni) {
+        return repositorio.findByDni(employee_dni);
     }
     
 }
