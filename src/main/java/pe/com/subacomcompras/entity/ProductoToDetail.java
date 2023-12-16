@@ -4,7 +4,11 @@
  */
 package pe.com.subacomcompras.entity;
 
+import lombok.Data;
+
+@Data
 public class ProductoToDetail {
-    private long id_product;
-    private int quantity;
+    private String id_product;
+    private String quantity;
+    private double precio_compra;
 }

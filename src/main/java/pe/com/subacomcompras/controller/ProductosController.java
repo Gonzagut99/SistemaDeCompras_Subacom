@@ -34,11 +34,14 @@ public class ProductosController {
     @GetMapping("/productos")
     public String MostrarProductosPage(Model modelo, @RequestParam(defaultValue="0") int page, @RequestParam(defaultValue="5") int size){
         Page<ProductoEntity> productPage = servicio.findAllCustomPaginated(PageRequest.of(page, size));
+        
         modelo.addAttribute("productos", productPage.getContent());
         modelo.addAttribute("proveedores",servicioProveedor.findAllCustom());
         modelo.addAttribute("currentPage", page);
         modelo.addAttribute("totalPages", productPage.getTotalPages());
         modelo.addAttribute("page", productPage);
+        // Añadir el objeto vacio para el formulario al modelo
+        modelo.addAttribute("pedido", new PedidoEntity());
         return "Productos/productos";
     }
     

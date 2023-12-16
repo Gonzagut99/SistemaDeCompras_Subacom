@@ -10,11 +10,14 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.com.subacomcompras.entity.DetallePedidoEntity;
+import pe.com.subacomcompras.entity.ProductoToDetail;
 import pe.com.subacomcompras.repository.DetallePedidoRepository;
 import pe.com.subacomcompras.service.gestion.DetallePedidoService;
 
 @Service
 public class DetallePedidoServiceImpl implements DetallePedidoService{
+    private List<ProductoToDetail> listaProductos;
+    
     @Autowired
     private DetallePedidoRepository repositorio;
     
@@ -57,6 +60,21 @@ public class DetallePedidoServiceImpl implements DetallePedidoService{
        DetallePedidoEntity objrol = repositorio.getById(t.getId_orderdetail());
        objrol.setEstado(true);
        return repositorio.save(objrol);
+    }
+
+    @Override
+    public void setListaProductos(List<ProductoToDetail> listaProductos) {
+        this.listaProductos = listaProductos;
+    }
+
+    @Override
+    public List<ProductoToDetail> getListaProductos() {
+        return listaProductos;
+    }
+
+    @Override
+    public List<DetallePedidoEntity> findByPedidoId(Long pedidoId) {
+         return repositorio.findByPedidoId(pedidoId);
     }
     
 }
