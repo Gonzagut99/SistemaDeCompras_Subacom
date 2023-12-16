@@ -126,7 +126,7 @@
                           Fecha de pedido
                       </th>
                       <th scope="col" class="px-6 py-3">
-                          Estado
+                        Estado de pedido
                       </th>
                       <th scope="col" class="px-6 py-3">
                         Proveedor
@@ -134,38 +134,48 @@
                       <th scope="col" class="px-6 py-3">
                         Empleado
                       </th>
-                      <th scope="col" class="px-6 py-3 text-center">
-                        Editar
+                      <th scope="col" class="px-6 py-3">
+                          Estado
                       </th>
                       <th scope="col" class="px-6 py-3 text-center">
+                        Ver Detalle
+                      </th>
+                      <!-- <th scope="col" class="px-6 py-3 text-center">
                         Eliminar
-                      </th>
+                      </th> -->
                       <!-- <th scope="col" class="px-6 py-3">
                           <span class="sr-only">Edit</span>
                       </th> -->
                   </tr>
               </thead>
               <tbody id="empleado_tbody">
-                  <!-- <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  <tr th:each=" pedido: ${pedidos}" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                      <th th:text="${pedido.id_order}" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                           1
                       </th>
-                      <td class="px-6 py-4">
+                      <td th:text="${#dates.format(pedido.order_date, 'dd/MM/yyyy')}" class="px-6 py-4">
                           Luis Gerardo
                       </td>
-                      <td class="px-6 py-4">
-                          Bigoria Escobedo
+                      <td th:text="${pedido.order_state}" class="px-6 py-4">
+                        Luis Gerardo
                       </td>
-                      <td class="px-6 py-4">
+                      <td th:text="${pedido.proveedor.supplier_name}" class="px-6 py-4">
                         luisbi@subacom.com
                         </td>
-                      <td class="px-6 py-4 text-right">
-                          <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
+                      <td th:text="${pedido.empleado.employee_name} + ' ' + ${pedido.empleado.employee_first_lastName}" class="px-6 py-4">
+                        luisbi@subacom.com
                       </td>
-                      <td class="px-6 py-4 text-right">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Eliminar</a>
-                    </td>
-                  </tr> -->
+                      <td th:text="${pedido.estado} ? 'Habilitado' : 'Deshabilitado'" class="px-6 py-4">
+                          Bigoria Escobedo
+                      </td>
+                      
+                      <td class="px-6 py-4 text-center">
+                          <a th:href="@{/detallepedidopage/{id}(id=${pedido.id_order})}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Ver detalle</a>
+                      </td>
+                      <!-- <td class="px-6 py-4 text-right">
+                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Habilitar</a>
+                    </td> -->
+                  </tr>
               </tbody>
           </table>
         </div>

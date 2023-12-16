@@ -46,7 +46,7 @@ public class ProductoController {
     }
 
     @PostMapping("/registrarproducto")
-    public String RegistrarEmpleado(
+    public String RegistrarProducto(
             @ModelAttribute("producto") ProductoEntity p) {
         ProductoEntity existingProducto = new ProductoEntity();
         existingProducto.setProduct_name(p.getProduct_name());
@@ -66,7 +66,7 @@ public class ProductoController {
     }
 
     @GetMapping("/actualizarproductopage/{id}")
-    public String MostrarActualizarEmpleado(@PathVariable Long id,
+    public String MostrarActualizarProducto(@PathVariable Long id,
             Model modelo) {
         modelo.addAttribute("producto",
                 servicio.findById(id).get());
@@ -105,7 +105,7 @@ public class ProductoController {
     }
 
     @GetMapping("/eliminarproducto/{id}")
-    public String EliminarEmpleado(@PathVariable Long id, @RequestParam(defaultValue = "0") int page,
+    public String EliminarProducto(@PathVariable Long id, @RequestParam(defaultValue = "0") int page,
         @RequestParam(defaultValue = "5") int size) {
         ProductoEntity objproducto = servicio.findById(id).get();
         if (objproducto.isEstado()) {

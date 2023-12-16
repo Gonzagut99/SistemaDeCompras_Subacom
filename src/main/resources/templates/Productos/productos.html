@@ -87,7 +87,7 @@
               </div> -->
 
             <!-- checkboxTable products -->
-            <form id="productosSeleccionadosForm" class="relative overflow-x-auto shadow-md pb-4">
+            <form th:action="@{/registrarpedido}" method="post" th:object="${pedido}" id="productosSeleccionadosForm" class="relative overflow-x-auto shadow-md pb-4">
                 <div class="border-2 dark:border-gray-600 rounded-lg overflow-x-auto">
                     <table class="rounded-lg w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
                         <thead class="rounded-t-lg text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -188,10 +188,11 @@
                 <!-- Select proveedor -->
                 <div class="mt-5 mb-6 w-full md:min-w-[280px] md:w-[300px] lg:w-1/4">
                     <label for="proveedor_input" class="block w-full mb-2 text-sm font-medium text-gray-900 dark:text-white">Proveedor:</label>
-                    <select id="proveedor_input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                        <option th:each=" proveedor: ${proveedores}" th:value="proveedor.id_supplier" th:text="${proveedor.supplier_name}" >Hola</option>
+                    <select id="proveedor_input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option th:each="proveedor,stat: ${proveedores}" th:value="${proveedor.id_supplier}" th:text="${proveedor.supplier_name}" th:selected="${stat.index == 0}">Hola</option>
                     </select>
                 </div>
+
                 <div class=" flex gap-6 w-full justify-end items-center mt-4">
                     <div class="dark:text-gray-400 text-lg">Productos seleccionados: <span id="productosSeleccionadosSpan" class="text-gray-900 dark:text-white">1</span></div>
                     <div class="dark:text-gray-400 text-lg">Precio total: <span class="text-gray-900 dark:text-white">S/.</span> <span id="precioTotalSpan" class="text-gray-900 dark:text-white">2999</span></div>
@@ -214,7 +215,6 @@
                             fetch('http://localhost:8095/subacomcompras/productosrest')
                             .then(res => res.json())
                             .then(data=>{
-                                console.log(data)
                                 let precios = []
                                 productosSeleccionados.forEach(prod=>{
                                     const productoEncontrado=data.find((ele)=>{
@@ -325,11 +325,45 @@
                         // Evita que se envíe el formulario
                         event.preventDefault();
 
-                        // Elimina el ítem de sessionStorage
-                        sessionStorage.removeItem('productosSeleccionados');
+                        // Obtén la lista de objetos de tu almacenamiento de sesión
+                        //var listaObjetos = JSON.parse(sessionStorage.getItem("tuLista"));
 
-                        // Aquí puedes hacer lo que necesites después de eliminar el ítem
-                        actualizarTotales();
+                        //input del proveedor
+                        let proveedor_inputValue = ((document.getElementById('proveedor_input')).value);
+                        let id_employee= sessionStorage.getItem("id_employee");
+
+                        // Envía la lista completa al controlador usando Fetch
+                        fetch('http://localhost:8095/subacomcompras/pedidoRest/listaPedidoDetail', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(productosSeleccionados), // Convierte la lista completa a una cadena JSON
+                        })
+                        .then(response => response.text())
+                        .then(data => {
+                            console.log(data)
+                            fetch(`http://localhost:8095/subacomcompras/pedidoRest/registrarpedidoRest?id_proveedor=${proveedor_inputValue.toString()}&id_employee=${id_employee.toString()}`,
+                                {
+                                    method: 'POST'
+                                }
+                            )
+                            .then(res=>res.text())
+                            .then(data2=>console.log(data))
+                            .catch(err=>console.log(err))
+                        })
+                        .catch((error) => {
+                            console.log(error)
+                        });
+
+                        setTimeout(()=>{
+                            // Elimina el ítem de sessionStorage
+                            sessionStorage.removeItem('productosSeleccionados');
+
+                            // Aquí puedes hacer lo que necesites después de eliminar el ítem
+                            actualizarTotales();
+                        },2000)
+                        
                     });
                 </script>
                 
