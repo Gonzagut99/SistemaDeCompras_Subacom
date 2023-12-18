@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import java.io.Serializable;
+import org.springframework.format.annotation.DateTimeFormat;
 import pe.com.subacomcompras.entity.base.BaseEntity;
 
 @SuperBuilder
@@ -47,6 +48,7 @@ public class EmpleadoEntity extends BaseEntity implements Serializable {
     private String employee_email;
     
     @NotEmpty
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name="hire_date")
     private Date hire_date;
     
