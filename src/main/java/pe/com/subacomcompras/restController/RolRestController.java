@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package pe.com.subacomcompras.restController;
 
 import java.util.List;
@@ -15,48 +11,50 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pe.com.subacomcompras.entity.ProductoEntity;
-import pe.com.subacomcompras.service.gestion.ProductoService;
+import pe.com.subacomcompras.entity.RolEntity;
+import pe.com.subacomcompras.service.seguridad.RolService;
 
 @RestController
-@RequestMapping("/productosrest")
-public class ProductoRestController {
-    @Autowired
-    private ProductoService servicio;
+@RequestMapping("/rol_rest")
+
+public class RolRestController {
     
+    @Autowired
+    private RolService servicio;
+    
+     
     @GetMapping
-    public List<ProductoEntity> findAll(){
+    public List<RolEntity> findAll() {
         return servicio.findAll();
     }
     
     @GetMapping("/custom")
-    public List<ProductoEntity> findAllCustom() {
+        public List<RolEntity> findAllCustom() {
         return servicio.findAllCustom();
     }
     
-    
+        
     @GetMapping("/{id}")
-    public Optional<ProductoEntity> findById(@PathVariable Long id){
+    public Optional<RolEntity> findById(@PathVariable Long id) {
         return servicio.findById(id);
     }
     
-
     @PostMapping
-    public ProductoEntity add(@RequestBody ProductoEntity c) {
+    public RolEntity add(@RequestBody RolEntity c) {
         return servicio.add(c);
     }
     
     
     @PutMapping("{id}")
-    public ProductoEntity update(@PathVariable Long id, @RequestBody ProductoEntity c) {
-        c.setId_product(id);
+    public RolEntity update(@PathVariable Long id, @RequestBody RolEntity c) {
+        c.setId_role(id);
         return servicio.update(c);
     }
     
     @DeleteMapping("{id}")
-    public ProductoEntity delete(@PathVariable Long id) {
-        ProductoEntity objproducto = new ProductoEntity();
-        objproducto.setEstado(false);
-        return servicio.delete(ProductoEntity.builder().id_product(id).build());
+    public RolEntity delete(@PathVariable Long id) {
+        RolEntity objrol = new RolEntity();
+        objrol.setEstado(false);
+        return servicio.delete(RolEntity.builder().id_role(id).build());
     }
 }

@@ -57,4 +57,9 @@ public class InicioController {
                 servicio.findById(id_employee).get());
         return "Home/home";
     }
+    
+    @GetMapping("/home_inicio")
+    public String MostrarMenu(){
+        return "Home/home";
+    }
 }

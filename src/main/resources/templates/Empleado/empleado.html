@@ -68,13 +68,13 @@
         <!-- subtitle -->
         <h3 class="text-3xl font-bold dark:text-white mb-4">Registrar usuario</h3>
 
-        <form class="mb-6 flex flex-col" th:object="${usuario}">
+        <form th:action="@{/registrarusuario}" method="post" class="mb-6 flex flex-col" th:object="${usuario}">
             
             <div class="flex gap-4">
               <!-- Dropdown rol -->
               <div class="mb-6 w-full md:min-w-[280px] md:w-[300px] lg:w-1/4">
-                <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option th:each=" rol: ${roles}" th:text="${rol.role_name}" th:value="${rol.id_role}">Ordenadores</option>
+                <select th:field="*{rol.id_role}" id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option th:each=" rol: ${roles}" th:text="${rol.role_name}" th:value="${rol.id_role}" >Ordenadores</option>
                 </select>
             </div>
               <a th:href="@{/rol}">
@@ -84,12 +84,12 @@
 
             <div class="flex flex-wrap gap-2">
                 <div class="mb-6 w-full md:min-w-[280px] md:w-[300px] lg:w-1/4">
-                    <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombres de usuario:</label>
-                    <input type="text" id="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                    <label for="user_name_input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombres de usuario:</label>
+                    <input th:field="*{user_name}" type="text" id="user_name_input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                 </div>
                 <div class="mb-6 w-full md:min-w-[280px] md:w-[300px] lg:w-1/4">
-                  <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña</label>
-                  <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                  <label for="user_password_input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña</label>
+                  <input  th:field="*{user_password}" type="password" id="user_password_input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                 </div>
             </div> 
             <div class="flex items-start mb-6">
@@ -106,44 +106,44 @@
         <!-- subtitle -->
         <h3 class="text-3xl font-bold dark:text-white my-4">Registrar empleado</h3>
 
-        <form id="empleadoForm" th:object="${empleado}">
+        <form id="empleadoForm"  th:action="@{/registrarempleado}" method="post"  th:object="${empleado}">
             <div class="flex gap-4">
                 <!-- Dropdown rol -->
               <div class="mb-6 w-full md:min-w-[280px] md:w-[300px] lg:w-1/4">
                   <label for="usuario_select" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Usuario:</label>
-                  <select id="usuario_select" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                  <select th:field="*{usuario.id_user}" id="usuario_select" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                       <option th:each=" usuario: ${usuarios}" th:text="${usuario.user_name}" th:value="${usuario.id_user}">id_user</option>
                   </select>
               </div>
             </div>
             <div class="flex flex-wrap gap-2">
                 <div class="mb-6 w-full md:min-w-[280px] md:w-[300px] lg:w-1/4">
-                    <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombres:</label>
-                    <input type="text" id="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                    <label for="employee_name_input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombres:</label>
+                    <input th:field="*{employee_name}" type="text" id="employee_name_input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                 </div>
                 <div class="mb-6 w-full md:min-w-[280px] md:w-[300px] lg:w-1/4">
-                    <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">DNI:</label>
-                    <input type="text" id="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                    <label for="employee_dni_input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">DNI:</label>
+                    <input th:field="*{employee_dni}" type="text" id="employee_dni_input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                 </div>
             </div>
             <div class="flex flex-wrap gap-2">
               <div class="mb-6 w-full md:min-w-[280px] md:w-[300px] lg:w-1/4">
-                  <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apellido paterno:</label>
-                  <input type="text" id="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                  <label for="employee_first_lastname_input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apellido paterno:</label>
+                  <input th:field="*{employee_first_lastName}" type="text" id="employee_first_lastname_input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
               </div>
               <div class="mb-6 w-full md:min-w-[280px] md:w-[300px] lg:w-1/4">
-                  <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apellido materno:</label>
-                  <input type="text" id="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                  <label for="employee_first_lastname_input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apellido materno:</label>
+                  <input th:field="*{employee_second_lastNname}"  type="text" id="employee_first_lastname_input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
               </div>
             </div>
             <div class="flex flex-wrap gap-2">
               <div class="mb-6 w-full md:min-w-[280px] md:w-[300px] lg:w-1/4">
-                  <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo:</label>
-                  <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="nombre@mail.com" required>
+                  <label for="employee_email_input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo:</label>
+                  <input th:field="*{employee_email}" type="email" id="employee_email_input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="nombre@mail.com" required>
               </div>
               <div class="mb-6 w-full md:min-w-[280px] md:w-[300px] lg:w-1/4">
-                  <label for="number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Teléfono: </label>
-                  <input type="number" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                  <label for="employee_phone_input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Teléfono: </label>
+                  <input th:field="*{employee_phone}" type="number" id="employee_phone_input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
               </div>
             </div>
             

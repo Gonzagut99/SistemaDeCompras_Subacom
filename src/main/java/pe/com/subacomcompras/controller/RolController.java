@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import pe.com.subacomcompras.entity.ProveedorEntity;
 import pe.com.subacomcompras.entity.RolEntity;
 import pe.com.subacomcompras.service.seguridad.RolService;
 
@@ -41,6 +42,22 @@ public class RolController {
         return "rol/actualizarRol";
     }
     
+    
+    //ACTUALIZAR ROL
+    @PostMapping("/actualizarrol/{id}")
+    public String ActualizarRol(@PathVariable Long id,
+            @ModelAttribute("rol") RolEntity r) {
+        r.setId_role(id);
+        servicio.update(r);
+        return "redirect:/rol";
+    }
+    
+    
+    
+    
+    
+    
+    
     @GetMapping("/eliminarrol/{id}")
     public String EliminarRol(@PathVariable Long id) {
         RolEntity objrol = servicio.findById(id).get();
@@ -50,6 +67,20 @@ public class RolController {
             servicio.enable(objrol);
         }
    
+        return "redirect:/rol";
+    }
+    
+    
+    //REGISTRAR ROL 
+    
+    @ModelAttribute("rol")
+    public RolEntity ModelRol(){
+        return new RolEntity();
+    }
+    
+    @PostMapping("/registrarrol")
+    public String RegistrarRol(@ModelAttribute ("rol") RolEntity r){
+        servicio.add(r);
         return "redirect:/rol";
     }
     
