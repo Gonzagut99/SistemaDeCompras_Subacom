@@ -23,12 +23,17 @@ public class DetallePedidoEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID=1L;
     
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_orderdetail")
     private long id_orderdetail;
     
     @NotEmpty
     @Column(name="quantity")
     private int quantity;
+    
+    @NotEmpty
+    @Column(name="precio_compra")
+    private double precio_compra;
     
     
     @ManyToOne
@@ -38,9 +43,5 @@ public class DetallePedidoEntity extends BaseEntity implements Serializable {
     @ManyToOne
     @JoinColumn(name="id_product",nullable = false)
     private ProductoEntity producto;
-    
-    @ManyToOne
-    @JoinColumn(name="id_employee",nullable = false)
-    private EmpleadoEntity empleado;
     
 }

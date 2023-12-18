@@ -12,7 +12,7 @@ public interface GenericoService<T> {
     
     List<T> findAllCustom();
     
-    Optional<T> findById();
+    Optional<T> findById(Long id);
     
     T add(T t);
     

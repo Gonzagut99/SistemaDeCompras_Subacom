@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,38 +30,7 @@
 </head>
 <body class="bg-gray-700 flex flex-col min-h-screen">
     <!-- Navbar -->
-  <!-- <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <a href="../index.html" class="flex items-center">
-        <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="Flowbite Logo">
-        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Subacom DMS</span>
-    </a>
-    <div class="flex md:order-2">
-      <a href="../Documento/documento.html">
-        <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Revisar Documentos</button>
-      </a>
-        <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
-          <span class="sr-only">Abrir menú principal</span>
-          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-          </svg>
-      </button>
-    </div>
-    <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-      <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-        <li>
-          <a href="../index.html" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">Inicio</a>
-        </li>
-        <li>
-          <a href="../Empleado/empleado.html" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Empleado</a>
-        </li>
-        <li>
-          <a href="./rol/rol.html" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Revisar Documentos</a>
-        </li>
-      </ul>
-    </div>
-    </div>
-  </nav> -->
+  <nav th:insert="homeTemplate.html :: nav"></nav>
   <main class="pt-[92px] px-5 pb-4 flex flex-col items-center"> 
     <div class="max-w-screen-xl flex flex-col w-full ">
         <!-- Title and Breadcrumb -->
@@ -88,32 +57,29 @@
                 <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                 </svg>
-                <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Empleados</span>
+                <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Usuarios</span>
                 </div>
             </li>
             </ol>
         </nav>
         <!-- Main heading -->
-        <h2 class="mb-4 text-4xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-5xl"><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-600">Empleados</span></h2>
+        <h2 class="mb-4 text-4xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-5xl"><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-600">Usuarios</span></h2>
         
         <!-- subtitle -->
         <h3 class="text-3xl font-bold dark:text-white mb-4">Registrar usuario</h3>
 
-        <form class="mb-6">
-            <!-- Dropdown rol -->
-            <div class="mb-6">
-              <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="justify-between w-[200px] text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Seleccione Rol<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-              </svg>
-              </button>
-              <!-- Dropdown menu -->
-              <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200 border dark:border-gray-500 rounded-md" aria-labelledby="dropdownDefaultButton">
-                  <li>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Empleado</a>
-                  </li>
-                </ul>
-              </div>
+        <form class="mb-6 flex flex-col" th:object="${usuario}">
+            
+            <div class="flex gap-4">
+              <!-- Dropdown rol -->
+              <div class="mb-6 w-full md:min-w-[280px] md:w-[300px] lg:w-1/4">
+                <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option th:each=" rol: ${roles}" th:text="${rol.role_name}" th:value="${rol.id_role}">Ordenadores</option>
+                </select>
+            </div>
+              <a th:href="@{/rol}">
+                <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Añadir nuevo rol</button>
+              </a>
             </div>
 
             <div class="flex flex-wrap gap-2">
@@ -125,18 +91,31 @@
                   <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña</label>
                   <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                 </div>
-            </div>          
+            </div> 
+            <div class="flex items-start mb-6">
+              <div class="flex items-center h-5">
+                  <input th:field="*{estado}" id="remember" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required>
+              </div>
+              <label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Habilitado</label>
+            </div>         
 
-            <button id="registerUserButton" type="submit" class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-base px-5 py-3 text-center mr-2 mb-2">Enviar y registrar</button>
+            <button id="registerUserButton" type="submit" class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-base px-5 py-3 text-center mr-2 mb-2 md:w-fit">Enviar y registrar</button>
             
-            <!-- <button type="submit" class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">Actualizar</button>
-            <button type="submit" class="text-white bg-rose-700 hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-rose-600 dark:hover:bg-rose-700 dark:focus:ring-rose-800">Eliminar</button> -->
         </form>
 
         <!-- subtitle -->
         <h3 class="text-3xl font-bold dark:text-white my-4">Registrar empleado</h3>
 
-        <form id="empleadoForm">
+        <form id="empleadoForm" th:object="${empleado}">
+            <div class="flex gap-4">
+                <!-- Dropdown rol -->
+              <div class="mb-6 w-full md:min-w-[280px] md:w-[300px] lg:w-1/4">
+                  <label for="usuario_select" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Usuario:</label>
+                  <select id="usuario_select" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                      <option th:each=" usuario: ${usuarios}" th:text="${usuario.user_name}" th:value="${usuario.id_user}">id_user</option>
+                  </select>
+              </div>
+            </div>
             <div class="flex flex-wrap gap-2">
                 <div class="mb-6 w-full md:min-w-[280px] md:w-[300px] lg:w-1/4">
                     <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombres:</label>
@@ -179,7 +158,7 @@
                       <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                     </svg>
                   </div>
-                  <input datepicker type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
+                  <input type="date" th:field="*{hire_date}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Seleccione fecha">
                 </div>
               </div>
               <!-- radio gender -->
@@ -188,13 +167,13 @@
                 <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                     <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                         <div class="flex items-center pl-3">
-                            <input id="horizontal-list-radio-license" type="radio" value="" name="list-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                            <input th:field="*{employee_gender}" value="Masculino" id="horizontal-list-radio-license" type="radio" name="list-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                             <label for="horizontal-list-radio-license" class="w-full py-2.5 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Masculino </label>
                         </div>
                     </li>
                     <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                         <div class="flex items-center pl-3">
-                            <input id="horizontal-list-radio-id" type="radio" value="" name="list-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                            <input th:field="*{employee_gender}" value="Femenino" id="horizontal-list-radio-id" type="radio" name="list-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                             <label for="horizontal-list-radio-id" class="w-full py-2.5 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Femenino</label>
                         </div>
                     </li>
@@ -205,15 +184,68 @@
 
             <div class="flex items-start mb-6">
               <div class="flex items-center h-5">
-                  <input id="remember" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required>
+                  <input th:field="*{estado}" id="remember" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required>
               </div>
               <label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Habilitado</label>
             </div>
             <button id="registerUserButton" type="submit" class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-base px-5 py-3 text-center mr-2 mb-2">Enviar y guardar</button>
-            <!-- <button type="submit" class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">Actualizar</button>
-            <button type="submit" class="text-white bg-rose-700 hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-rose-600 dark:hover:bg-rose-700 dark:focus:ring-rose-800">Eliminar</button> -->
         </form>
         
+        <!-- subtitle -->
+        <h3 class="text-3xl font-bold dark:text-white mt-8">Lista de usuarios</h3>
+        <!-- Table -->
+        <div class=" my-5 relative overflow-x-auto shadow-md sm:rounded-lg border  dark:border-gray-500">
+          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+              <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                  <tr>
+                      <th scope="col" class="px-6 py-3">
+                          ID Usuario
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                          Nombre de usuario
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                          Rol
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Estado
+                    </th>
+                      <th scope="col" class="px-6 py-3 text-center">
+                        Actualizar
+                      </th>
+                      <th scope="col" class="px-6 py-3 text-center">
+                        Habilitar
+                      </th>
+                      <!-- <th scope="col" class="px-6 py-3">
+                          <span class="sr-only">Edit</span>
+                      </th> -->
+                  </tr>
+              </thead>
+              <tbody id="empleado_tbody">
+                <tr th:each="usuario: ${usuarios}" th:attr="usuario.id_user=${usuario.id_user}, rol.id_role=${usuario.rol.id_role}" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <th th:text="${usuario.id_user}" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        1
+                    </th>
+                    <td th:text="${usuario.user_name}" class="px-6 py-4">
+                        Luis Gerardo
+                    </td>
+                    <td th:text="${usuario.rol.role_name}" class="px-6 py-4">
+                      luisbi@subacom.com
+                      </td>
+                    <td th:text="${usuario.estado} ? 'Habilitado' : 'Deshabilitado'" class="px-6 py-4">
+                      luisbi@subacom.com
+                      </td>
+                    <td class="px-6 py-4 text-center">
+                        <a th:href="@{/actualizarusuariopage/{id}(id=${usuario.id_user})}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Actualizar</a>
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                      <a th:href="@{/eliminarusuario/{id}(id=${usuario.id_user})}" th:text="${usuario.estado} ? 'Deshabilitar' : 'Habilitar'" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Habilitar</a>
+                  </td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+
         <!-- subtitle -->
         <h3 class="text-3xl font-bold dark:text-white mt-8">Lista de empleados</h3>
         <!-- Table -->
@@ -243,13 +275,19 @@
                         Teléfono
                       </th>
                       <th scope="col" class="px-6 py-3">
+                        Género
+                      </th>
+                      <th scope="col" class="px-6 py-3">
                         Fecha de contratación
                       </th>
-                      <th scope="col" class="px-6 py-3 text-center">
-                        Editar
+                      <th scope="col" class="px-6 py-3">
+                        Estado
                       </th>
                       <th scope="col" class="px-6 py-3 text-center">
-                        Eliminar
+                        Actualizar
+                      </th>
+                      <th scope="col" class="px-6 py-3 text-center">
+                        Habilitar
                       </th>
                       <!-- <th scope="col" class="px-6 py-3">
                           <span class="sr-only">Edit</span>
@@ -257,26 +295,44 @@
                   </tr>
               </thead>
               <tbody id="empleado_tbody">
-                  <!-- <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  <tr th:each="empleado: ${empleados}" th:attr="empleado.id_employee=${empleado.id_employee}, empleado.id_user=${empleado.usuario.id_user}" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                      <th th:text="${empleado.id_employee}" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                           1
                       </th>
-                      <td class="px-6 py-4">
+                      <td th:text="${empleado.employee_name}" class="px-6 py-4">
                           Luis Gerardo
                       </td>
-                      <td class="px-6 py-4">
+                      <td th:text="${empleado.employee_first_lastName} + ' ' + ${empleado.employee_second_lastNname}" class="px-6 py-4">
                           Bigoria Escobedo
                       </td>
-                      <td class="px-6 py-4">
+                      <td th:text="${empleado.employee_dni}" class="px-6 py-4">
                         luisbi@subacom.com
                         </td>
-                      <td class="px-6 py-4 text-right">
-                          <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
+                      <td th:text="${empleado.employee_email}" class="px-6 py-4">
+                        luisbi@subacom.com
                       </td>
-                      <td class="px-6 py-4 text-right">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Eliminar</a>
+                      <td th:text="${empleado.usuario.user_name}" class="px-6 py-4">
+                        luisbi@subacom.com
+                      </td>
+                      <td th:text="${empleado.employee_phone}" class="px-6 py-4">
+                        luisbi@subacom.com
+                      </td>
+                      <td th:text="${empleado.employee_gender}" class="px-6 py-4">
+                        luisbi@subacom.com
+                      </td>
+                      <td th:text="${#dates.format(empleado.hire_date, 'dd/MM/yyyy')}" class="px-6 py-4">
+                        luisbi@subacom.com
+                      </td>
+                      <td th:text="${empleado.estado} ? 'Habilitado' : 'Deshabilitado'" class="px-6 py-4">
+                        luisbi@subacom.com
+                      </td>
+                      <td class="px-6 py-4 text-center">
+                          <a th:href="@{/actualizarempleadopage/{id}(id=${empleado.id_employee})}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Actualizar</a>
+                      </td>
+                      <td class="px-6 py-4 text-center">
+                        <a th:href="@{/eliminarempleado/{id}(id=${empleado.id_employee})}" th:text="${empleado.estado} ? 'Deshabilitar' : 'Habilitar'" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Habilitar</a>
                     </td>
-                  </tr> -->
+                  </tr>
               </tbody>
           </table>
         </div>

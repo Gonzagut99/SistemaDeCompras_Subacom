@@ -44,9 +44,14 @@ public class ProductoEntity extends BaseEntity implements Serializable {
     private int product_stock;
     
     @NotEmpty
-    @Size(min = 5, max = 20, message = "La garantia tiene que estar entre {min} caracteres y {max} caracteres")
+    @Size(min = 1, max = 4, message = "La garantia tiene que estar entre {min} caracteres y {max} caracteres")
     @Column(name="warranty_time")
-    private String warranty_time;
+    private int warranty_time;
+    
+    @NotEmpty
+    @Size(min = 5, max = 20, message = "La garantia tiene que estar entre {min} caracteres y {max} caracteres")
+    @Column(name="warranty_time_unit")
+    private String warranty_time_unit;
     
     @NotEmpty
     @Size(min = 5, max = 100, message = "La url del producto tiene que estar entre {min} caracteres y {max} caracteres")
@@ -57,11 +62,4 @@ public class ProductoEntity extends BaseEntity implements Serializable {
     @ManyToOne
     @JoinColumn(name="id_category",nullable = false)
     private CategoriaEntity categoria;
-    
-    @NotEmpty
-    @ManyToOne
-    @JoinColumn(name="id_supplier",nullable = false)
-    private ProveedorEntity proveedor;
-    
-    
 }
