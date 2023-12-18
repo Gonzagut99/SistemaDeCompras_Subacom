@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package pe.com.subacomcompras.restController;
 
 import java.util.List;
@@ -15,48 +11,52 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pe.com.subacomcompras.entity.ProductoEntity;
-import pe.com.subacomcompras.service.gestion.ProductoService;
+import pe.com.subacomcompras.entity.DetallePedidoEntity;
+import pe.com.subacomcompras.entity.EmpleadoEntity;
+import pe.com.subacomcompras.entity.UsuarioEntity;
+import pe.com.subacomcompras.service.gestion.DetallePedidoService;
+
 
 @RestController
-@RequestMapping("/productosrest")
-public class ProductoRestController {
-    @Autowired
-    private ProductoService servicio;
+@RequestMapping("/detallepedido_rest")
+public class DetallePedidoRestController {
     
-    @GetMapping
-    public List<ProductoEntity> findAll(){
+    @Autowired
+    private DetallePedidoService servicio;
+    
+     @GetMapping
+    public List<DetallePedidoEntity> findAll() {
         return servicio.findAll();
     }
     
     @GetMapping("/custom")
-    public List<ProductoEntity> findAllCustom() {
+        public List<DetallePedidoEntity> findAllCustom() {
         return servicio.findAllCustom();
     }
     
-    
+        
     @GetMapping("/{id}")
-    public Optional<ProductoEntity> findById(@PathVariable Long id){
+    public Optional<DetallePedidoEntity> findById(@PathVariable Long id) {
         return servicio.findById(id);
     }
     
-
     @PostMapping
-    public ProductoEntity add(@RequestBody ProductoEntity c) {
+    public DetallePedidoEntity add(@RequestBody DetallePedidoEntity c) {
         return servicio.add(c);
     }
     
     
     @PutMapping("{id}")
-    public ProductoEntity update(@PathVariable Long id, @RequestBody ProductoEntity c) {
-        c.setId_product(id);
+    public DetallePedidoEntity update(@PathVariable Long id, @RequestBody DetallePedidoEntity c) {
+        c.setId_orderdetail(id);
         return servicio.update(c);
     }
     
     @DeleteMapping("{id}")
-    public ProductoEntity delete(@PathVariable Long id) {
-        ProductoEntity objproducto = new ProductoEntity();
-        objproducto.setEstado(false);
-        return servicio.delete(ProductoEntity.builder().id_product(id).build());
+    public DetallePedidoEntity delete(@PathVariable Long id) {
+        DetallePedidoEntity objdetalleproducto = new DetallePedidoEntity();
+        objdetalleproducto.setEstado(false);
+        return servicio.delete(DetallePedidoEntity.builder().id_orderdetail(id).build());
     }
+    
 }

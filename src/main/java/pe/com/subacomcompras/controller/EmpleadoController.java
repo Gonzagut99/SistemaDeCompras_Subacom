@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import pe.com.subacomcompras.entity.EmpleadoEntity;
+import pe.com.subacomcompras.entity.ProveedorEntity;
 import pe.com.subacomcompras.entity.UsuarioEntity;
 import pe.com.subacomcompras.service.seguridad.EmpleadoService;
 import pe.com.subacomcompras.service.seguridad.RolService;
@@ -46,6 +49,20 @@ public class EmpleadoController {
         return "Empleado/actualizarUsuario";
     }
     
+    
+    
+    //ACTUALIZAR USUARIO
+    @PostMapping("/actualizarusuario/{id}")
+    public String ActualizarUsuario(@PathVariable Long id,
+            @ModelAttribute("usuario") UsuarioEntity u) {
+        u.setId_user(id);
+        usuarioServicio.update(u);
+        return "redirect:/empleado";
+    }
+    
+    
+    
+    
     @GetMapping("/eliminarusuario/{id}")
     public String EliminarUsuario(@PathVariable Long id) {
         UsuarioEntity objrol = usuarioServicio.findById(id).get();
@@ -68,6 +85,20 @@ public class EmpleadoController {
         return "Empleado/actualizarEmpleado";
     }
     
+    
+    
+    //ACTUALIZAR EMPLEADO
+    @PostMapping("/actualizarempleado/{id}")
+    public String ActualizarEmpleado(@PathVariable Long id,
+            @ModelAttribute("empleado") EmpleadoEntity e) {
+        e.setId_employee(id);
+        empleadoServicio.update(e);
+        return "redirect:/empleado";
+    }
+    
+    
+    
+    
     @GetMapping("/eliminarempleado/{id}")
     public String EliminarEmpleado(@PathVariable Long id) {
         EmpleadoEntity objrol = empleadoServicio.findById(id).get();
@@ -79,6 +110,36 @@ public class EmpleadoController {
    
         return "redirect:/empleado";
     }
+    
+    
+    //REGISTRAR USUARIO
+    
+    
+    @ModelAttribute("usuario")
+    public UsuarioEntity ModelUsuario(){
+        return new UsuarioEntity();
+    }
+    
+    @PostMapping("/registrarusuario")
+    public String RegistrarUsuario(@ModelAttribute ("usuario") UsuarioEntity u){
+        usuarioServicio.add(u);
+        return "redirect:/empleado";
+    }
+    
+    //REGISTRAR EMPLEADO
+    
+    
+    @ModelAttribute("empleado")
+    public EmpleadoEntity ModelEmpleado(){
+        return new EmpleadoEntity();
+    }
+    
+    @PostMapping("/registrarempleado")
+    public String RegistrarMEmpleado(@ModelAttribute ("empleado") EmpleadoEntity u){
+        empleadoServicio.add(u);
+        return "redirect:/empleado";
+    }
+    
     
     /*@GetMapping("/registrarrol")
     public String MostrarRegistrarRol(){

@@ -78,46 +78,46 @@
         <h3 class="text-3xl font-bold dark:text-white mb-4">Registrar proveedor</h3>
 
         <!-- formulario -->
-        <form id="empleadoForm">
+        <form id="proveedorForm" th:action="@{/registrarproveedor}" method="post" th:object="${proveedor}">
             <div class="flex flex-wrap gap-2">
                 <div class="mb-6 w-full md:min-w-[280px] md:w-[300px] lg:w-1/4">
-                    <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre:</label>
-                    <input type="text" id="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                    <label for="supplier_name_input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre:</label>
+                    <input th:field="*{supplier_name}" type="text" id="supplier_name_input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                 </div>
                 <div class="mb-6 w-full md:min-w-[280px] md:w-[300px] lg:w-1/4">
-                    <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre Represetante:</label>
-                    <input type="text" id="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                    <label for="supplier_contact_name_input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre Represetante:</label>
+                    <input th:field="*{supplier_contact_name}" type="text" id="supplier_contact_name_input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                 </div>
             </div>
             <div class="flex flex-wrap gap-2">
               <div class="mb-6 w-full md:min-w-[280px] md:w-[300px] lg:w-1/4">
-                <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dirección:</label>
-                <input type="text" id="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                <label for="supplier_address_input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dirección:</label>
+                <input th:field="*{supplier_address}" type="text" id="supplier_address_input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
               </div>
               <div class="mb-6 w-full md:min-w-[280px] md:w-[300px] lg:w-1/4">
-                <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ciudad:</label>
-                <input type="text" id="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                <label for="supplier_city_input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ciudad:</label>
+                <input th:field="*{supplier_city}" type="text" id="supplier_city_input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
               </div>
             </div>
             <div class="flex flex-wrap gap-2">
               <div class="mb-6 w-full md:min-w-[280px] md:w-[300px] lg:w-1/4">
-                <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">País:</label>
-                <input type="text" id="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                <label for="supplier_country_input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">País:</label>
+                <input th:field="*{supplier_country}" type="text" id="supplier_country_input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
               </div>
               <div class="mb-6 w-full md:min-w-[280px] md:w-[300px] lg:w-1/4">
-                <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Código Postal:</label>
-                <input type="text" id="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                <label for="supplier_postal_code_input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Código Postal:</label>
+                <input th:field="*{supplier_postal_code}" type="text" id="supplier_postal_code_input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
               </div>
             </div>
             <div class="flex flex-wrap gap-1">
               <div class="mb-6 w-full md:min-w-[280px] md:w-[300px] lg:w-1/4">
-                <label for="number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Teléfono:</label>
-                <input type="number" id="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                <label for="supplier_phone_input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Teléfono:</label>
+                <input th:field="*{supplier_phone}" type="number" id="supplier_phone_input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
               </div>
             </div>
             <div class="flex items-start mb-6">
               <div class="flex items-center h-5">
-                  <input id="remember" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required>
+                  <input th:field="*{estado}" id="remember" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required>
               </div>
               <label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Habilitado</label>
             </div>

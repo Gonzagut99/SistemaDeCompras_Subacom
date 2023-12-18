@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package pe.com.subacomcompras.restController;
 
 import java.util.List;
@@ -15,48 +12,51 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pe.com.subacomcompras.entity.ProductoEntity;
-import pe.com.subacomcompras.service.gestion.ProductoService;
+import pe.com.subacomcompras.entity.UsuarioEntity;
+import pe.com.subacomcompras.service.seguridad.UsuarioService;
+
 
 @RestController
-@RequestMapping("/productosrest")
-public class ProductoRestController {
-    @Autowired
-    private ProductoService servicio;
+@RequestMapping("/usuario_rest")
+
+public class UsuarioRestController {
     
-    @GetMapping
-    public List<ProductoEntity> findAll(){
+    @Autowired
+    private UsuarioService servicio;
+    
+     @GetMapping
+    public List<UsuarioEntity> findAll() {
         return servicio.findAll();
     }
     
     @GetMapping("/custom")
-    public List<ProductoEntity> findAllCustom() {
+        public List<UsuarioEntity> findAllCustom() {
         return servicio.findAllCustom();
     }
     
-    
+        
     @GetMapping("/{id}")
-    public Optional<ProductoEntity> findById(@PathVariable Long id){
+    public Optional<UsuarioEntity> findById(@PathVariable Long id) {
         return servicio.findById(id);
     }
     
-
     @PostMapping
-    public ProductoEntity add(@RequestBody ProductoEntity c) {
+    public UsuarioEntity add(@RequestBody UsuarioEntity c) {
         return servicio.add(c);
     }
     
     
     @PutMapping("{id}")
-    public ProductoEntity update(@PathVariable Long id, @RequestBody ProductoEntity c) {
-        c.setId_product(id);
+    public UsuarioEntity update(@PathVariable Long id, @RequestBody UsuarioEntity c) {
+        c.setId_user(id);
         return servicio.update(c);
     }
     
     @DeleteMapping("{id}")
-    public ProductoEntity delete(@PathVariable Long id) {
-        ProductoEntity objproducto = new ProductoEntity();
-        objproducto.setEstado(false);
-        return servicio.delete(ProductoEntity.builder().id_product(id).build());
+    public UsuarioEntity delete(@PathVariable Long id) {
+        UsuarioEntity objusuario = new UsuarioEntity();
+        objusuario.setEstado(false);
+        return servicio.delete(UsuarioEntity.builder().id_user(id).build());
     }
+    
 }
