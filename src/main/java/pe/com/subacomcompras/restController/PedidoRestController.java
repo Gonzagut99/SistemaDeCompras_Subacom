@@ -7,9 +7,14 @@ package pe.com.subacomcompras.restController;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +25,7 @@ import pe.com.subacomcompras.entity.PedidoEntity;
 import pe.com.subacomcompras.entity.ProductoEntity;
 import pe.com.subacomcompras.entity.ProductoToDetail;
 import pe.com.subacomcompras.entity.ProveedorEntity;
+import pe.com.subacomcompras.entity.UsuarioEntity;
 import pe.com.subacomcompras.service.gestion.DetallePedidoService;
 import pe.com.subacomcompras.service.gestion.PedidoService;
 import pe.com.subacomcompras.service.gestion.ProductoService;
@@ -106,5 +112,41 @@ public class PedidoRestController {
         detallePedidoServicio.add(detallePedidoObj);
         
         return "redirect:/pedidos";
+    }
+    
+    
+    @GetMapping
+    public List<PedidoEntity> findAll() {
+        return servicio.findAll();
+    }
+    
+    @GetMapping("/custom")
+        public List<PedidoEntity> findAllCustom() {
+        return servicio.findAllCustom();
+    }
+    
+        
+    @GetMapping("/{id}")
+    public Optional<PedidoEntity> findById(@PathVariable Long id) {
+        return servicio.findById(id);
+    }
+    
+    @PostMapping
+    public PedidoEntity add(@RequestBody PedidoEntity c) {
+        return servicio.add(c);
+    }
+    
+    
+    @PutMapping("{id}")
+    public PedidoEntity update(@PathVariable Long id, @RequestBody PedidoEntity c) {
+        c.setId_order(id);
+        return servicio.update(c);
+    }
+    
+    @DeleteMapping("{id}")
+    public PedidoEntity delete(@PathVariable Long id) {
+        PedidoEntity objpedido = new PedidoEntity();
+        objpedido.setEstado(false);
+        return servicio.delete(PedidoEntity.builder().id_order(id).build());
     }
 }

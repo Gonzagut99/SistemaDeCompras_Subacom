@@ -51,14 +51,14 @@ public class InicioController {
         return "redirect:/";
     }
 
-    @GetMapping("/home_cambio")
+    @GetMapping("/home")
     public String MostrarMenu(@RequestParam(required = false) Long id_employee, Model modelo) {
         modelo.addAttribute("employee",
                 servicio.findById(id_employee).get());
         return "Home/home";
     }
     
-    @GetMapping("/home")
+    @GetMapping("/home_inicio")
     public String MostrarMenu(){
         return "Home/home";
     }
